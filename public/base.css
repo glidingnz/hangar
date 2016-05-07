@@ -1,0 +1,15 @@
+.nav {
+	background-color: #F5F5F5;
+	padding: 30px;
+	-webkit-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.2);
+	box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.2);
+	color: #333;
+}
+.nav a {
+	color: #333;
+}
+
+.page {
+	padding: 30px;
+}
