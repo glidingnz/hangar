@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('contact', function () {
-    return view('contact');
-});
+Route::get('orgs', 'OrgsController@index');
+Route::get('api/v1/orgs', 'OrgsController@index');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
