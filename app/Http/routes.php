@@ -11,12 +11,20 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('orgs', 'OrgsController@index');
 Route::get('api/v1/orgs', 'OrgsController@index');
+
 Route::auth();
 
+//Route::get('register', 'UsersController@register');
+Route::post('/register', 'UsersController@create');
+Route::get('/activate', 'UsersController@activate');
+
 Route::get('/home', 'HomeController@index');
+
+

@@ -1,0 +1,1 @@
+{"version":3,"sources":["base.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA","file":"all.css","sourcesContent":["\n.navbar {\n\t-webkit-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.1);\n\t-moz-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.1);\n\tbox-shadow: 4px 4px 10px 0px rgba(0,0,0,0.1);\n}"],"sourceRoot":"/source/"}
