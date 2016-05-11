@@ -96,17 +96,18 @@
 
 		<?php
 		if (Session::has('error')) {
-			$messages['error'][] = Session::get('error');
+			//$messages['error'][] = Session::get('error');
 		}
+		$messages = Messages::fetch();
 		if (isset($messages))
 		{
-			echo '<script>var error='. json_encode($messages) . ';</script>';
+			echo '<script>var messages='. json_encode($messages) . ';</script>';
 		}
 		?>
 
 	<script type="text/javascript" src="/js/app.js"></script>
 
-	<!-- load page specific scripts
+	<!-- load page specific scripts -->
 	@yield('scripts')
 </body>
 </html>

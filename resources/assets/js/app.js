@@ -25,8 +25,17 @@ gnz.messages = new Vue({
 	}
 });
 
-if (typeof error != 'undefined') {
-	gnz.messages.error(error);
+if (typeof messages != 'undefined') {
+	//gnz.messages;
+	messages.forEach(function(message) {
+		switch (message.type) {
+			case 'success': gnz.messages.success(message.text); break;
+			case 'error': gnz.messages.error(message.text); break;
+			case 'note': gnz.messages.note(message.text); break;
+			case 'warning': gnz.messages.warning(message.text); break;
+		}
+	})
+	console.log(messages);
 }
 
 
