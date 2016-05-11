@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Library\Messages;
 use App\Http\Requests;
 use App;
 
@@ -50,7 +51,7 @@ class UsersController extends Controller
 			return view('auth/activate');
 		}
 
-		$request->session()->flash('error','Acitvation code not valid');
+		$request->session()->put('error','Acitvation code not valid');
 		return view('blank');
 	}
 }

@@ -10,8 +10,11 @@
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	{{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
+	<!-- page specific styles -->
+	@yield('styles')
 
 	<?php
 	/*
@@ -89,12 +92,21 @@
 	
 	
 
-	@if (Session::has('error'))
-		<?php echo Session::get('error'); ?>
-	@endif
-
 	@yield('content')
 
+		<?php
+		if (Session::has('error')) {
+			$messages['error'][] = Session::get('error');
+		}
+		if (isset($messages))
+		{
+			echo '<script>var error='. json_encode($messages) . ';</script>';
+		}
+		?>
+
 	<script type="text/javascript" src="/js/app.js"></script>
+
+	<!-- load page specific scripts
+	@yield('scripts')
 </body>
 </html>

@@ -10463,11 +10463,19 @@ gnz.messages = new _vue2.default({
 		},
 		'error': function error(msg) {
 			return this.$children[0].error(msg);
+		},
+		'warning': function warning(msg) {
+			return this.$children[0].warning(msg);
+		},
+		'note': function note(msg) {
+			return this.$children[0].note(msg);
 		}
 	}
 });
 
-gnz.messages.success('testarooni');
+if (typeof error != 'undefined') {
+	gnz.messages.error(error);
+}
 
 //vm.messages().success('test');
 
