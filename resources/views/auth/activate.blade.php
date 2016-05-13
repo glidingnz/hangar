@@ -12,6 +12,7 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/activate') }}">
 					{!! csrf_field() !!}
 
+					<input type="hidden" value="{{ $code }}" name="code">
 
 					<div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
 						<label class="col-md-4 control-label">First Name</label>

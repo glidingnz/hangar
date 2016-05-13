@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
 			$table->string('last_name');
 			$table->string('mobile');
 			$table->integer('user_level');
+			$table->boolean('activated');
 			$table->string('activation_code');
 			$table->integer('gnz_id');
 			$table->boolean('gnz_active');

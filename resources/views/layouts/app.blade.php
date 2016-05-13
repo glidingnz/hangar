@@ -16,28 +16,6 @@
 	<!-- page specific styles -->
 	@yield('styles')
 
-	<?php
-	/*
-	// output PHP loaded messages
-	if (isset($_APP->messages))
-	{
-		$_MESSAGES = $_APP->messages->load_messages();
-		if (isset($_MESSAGES)) { 
-			foreach ($_MESSAGES AS $message)
-			{
-				switch ($message['type'])
-				{
-					case 'error': echo "gnz.messages.error('{$message['text']}');"; break;
-					case 'warning': echo "gnz.messages.warning('{$message['text']}');"; break;
-					case 'success': echo "gnz.messages.success('{$message['text']}');"; break;
-					case 'note': echo "gnz.messages.note('{$message['text']}');"; break;
-				}
-			}
-		}
-	}
-	*/
-	?>
-	
 </head>
 <body id="app-layout">
 	<nav class="navbar navbar-default navbar-static-top">
@@ -73,7 +51,7 @@
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								{{ Auth::user()->name }} <span class="caret"></span>
+								{{ Auth::user()->email }} <i></i>
 							</a>
 
 							<ul class="dropdown-menu" role="menu">
@@ -96,7 +74,15 @@
 
 		<?php
 		if (Session::has('error')) {
+			Messages::error(Session::get('error'));
 			//$messages['error'][] = Session::get('error');
+		}
+		if (isset($errors))
+		{
+			foreach ($errors->all() as $error)
+			{
+				Messages::error($error);
+			}
 		}
 		$messages = Messages::fetch();
 		if (isset($messages))

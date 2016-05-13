@@ -24,6 +24,7 @@ Route::auth();
 //Route::get('register', 'UsersController@register');
 Route::post('/register', 'UsersController@create');
 Route::get('/activate', 'UsersController@activate');
+Route::post('/activate', 'UsersController@activate_post');
 
 Route::get('/home', 'HomeController@index');
 
