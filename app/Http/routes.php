@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::get('orgs', 'OrgsController@index');
@@ -28,4 +28,6 @@ Route::post('/activate', 'UsersController@activate_post');
 
 Route::get('/home', 'HomeController@index');
 
-
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
+	Route::get('/gnz-members', 'GnzMembersApiController@index');
+});

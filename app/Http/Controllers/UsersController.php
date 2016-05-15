@@ -26,6 +26,7 @@ class UsersController extends Controller
 		$user = new App\User;
 		$user->email = $request->input('email');
 		$user->activation_code = str_random(10); // create an activation code
+		$user->api_token = str_random(60); // create an activation code
 		$user->save();
 
 		Messages::success('Account Created. Check your email to activate your account.');
@@ -54,6 +55,7 @@ class UsersController extends Controller
 			$user->password = bcrypt($request->input('password'));
 			$user->activated = 1;
 			$user->activation_code = null;
+			$user->user_level = 255;
 			$user->save();
 			Messages::success('Account Activated');
 		}

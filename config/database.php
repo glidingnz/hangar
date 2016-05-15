@@ -66,6 +66,20 @@ return [
 			'engine' => null,
 		],
 
+		'gnz' => [
+			'driver' => 'mysql',
+			'host' => env('DB_HOST', '127.0.0.1'),
+			'port' => env('DB_PORT', '3306'),
+			'database' => env('GNZ_DATABASE', 'gnz'),
+			'username' => env('GNZ_USERNAME', 'root'),
+			'password' => env('GNZ_PASSWORD', ''),
+			'charset' => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix' => '',
+			'strict' => false,
+			'engine' => null,
+		],
+
 		'pgsql' => [
 			'driver' => 'pgsql',
 			'host' => env('DB_HOST', 'localhost'),
