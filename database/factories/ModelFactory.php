@@ -11,14 +11,16 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 	return [
 		'first_name' => $faker->firstName,
 		'last_name' => $faker->lastName,
 		'email' => $faker->safeEmail,
 		'password' => bcrypt(str_random(10)),
 		'remember_token' => str_random(10),
-		'mobile' = '021 212 223',
-		'user_level' = '255'
+		'activation_code' => str_random(12),
+		'api_token' => str_random(60),
+		'mobile' => $faker->numerify('021 ### ####'),
+		'user_level' => '255'
 	];
 });

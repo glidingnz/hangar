@@ -23,7 +23,7 @@ class UsersController extends Controller
 			'email' => 'bail|required|email|unique:users'
 		]);
 
-		$user = new App\User;
+		$user = new App\Models\User;
 		$user->email = $request->input('email');
 		$user->activation_code = str_random(10); // create an activation code
 		$user->api_token = str_random(60); // create an activation code
@@ -47,7 +47,7 @@ class UsersController extends Controller
 		]);
 		
 
-		if ($user = App\User::where('activation_code', $request->input('code'))->first())
+		if ($user = App\Models\User::where('activation_code', $request->input('code'))->first())
 		{
 			$user->first_name = $request->input('first_name');
 			$user->last_name = $request->input('last_name');
@@ -72,7 +72,7 @@ class UsersController extends Controller
 
 	public function activate(Request $request)
 	{
-		if ($user = App\User::where('activation_code', $request->input('code'))->first())
+		if ($user = App\Models\User::where('activation_code', $request->input('code'))->first())
 		{
 			return view('auth/activate', ['code' => $request->input('code')]);
 		}
