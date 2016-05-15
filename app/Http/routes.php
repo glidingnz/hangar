@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('orgs', 'OrgsController@index');
-Route::get('api/v1/orgs', 'OrgsController@index');
+//Route::get('api/v1/orgs', 'OrgsController@index');
 
 Route::auth();
 
@@ -28,6 +28,14 @@ Route::post('/activate', 'UsersController@activate_post');
 
 Route::get('/home', 'HomeController@index');
 
+/*
 Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
 	Route::get('/gnz-members', 'GnzMembersApiController@index');
+});
+*/
+
+
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1', function ($api) {
+	$api->get('orgs', 'App\Api\V1\Controllers\OrgsController@index');
 });

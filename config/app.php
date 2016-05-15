@@ -150,6 +150,7 @@ return [
 
 		// debugbar
 		Barryvdh\Debugbar\ServiceProvider::class,
+		Dingo\Api\Provider\LaravelServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
