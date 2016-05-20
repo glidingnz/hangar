@@ -34,8 +34,34 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
 });
 */
 
-
+/*
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
 	$api->get('orgs', 'App\Api\V1\Controllers\OrgsController@index');
 });
+*/
+
+
+/**
+ * OAuth
+ */
+Route::get('api2', ['middleware' => 'oauth', function() {
+	// return the protected resource
+	//echo “success authentication”;
+	return ['now' => microtime(), 'date' => date('Y-M-D',time())];
+}]);
+
+
+
+//Get access_token
+Route::post('oauth/access_token', function() {
+	return Response::json(Authorizer::issueAccessToken());
+});
+
+/*
+$api->version('v1', ['middleware' => 'api.auth'] , function ($api) {
+    $api->get('time', function () {
+        return ['now' => microtime(), 'date' => date('Y-M-D',time())];
+    });
+});
+*/
