@@ -16,35 +16,32 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::get('orgs', 'OrgsController@index');
-//Route::get('api/v1/orgs', 'OrgsController@index');
 
 Route::auth();
 
-//Route::get('register', 'UsersController@register');
 Route::post('/register', 'UsersController@create');
 Route::get('/activate', 'UsersController@activate');
 Route::post('/activate', 'UsersController@activate_post');
 
 Route::get('/home', 'HomeController@index');
 
-/*
-Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
-	Route::get('/gnz-members', 'GnzMembersApiController@index');
-});
-*/
-
-/*
-$api = app('Dingo\Api\Routing\Router');
-$api->version('v1', function ($api) {
-	$api->get('orgs', 'App\Api\V1\Controllers\OrgsController@index');
-});
-*/
-
 
 /**
  * OAuth
  */
+
+Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
+{
+	Route::get('/now', ['middleware' => 'oauth', function() {
+		return ['now' => microtime(), 'date' => date('Y-M-D',time())];
+	}]);
+
+	Route::get('/orgs',  'OrgController@index');
+
+
+});
+
+
 Route::get('api2', ['middleware' => 'oauth', function() {
 	// return the protected resource
 	//echo “success authentication”;
@@ -57,11 +54,3 @@ Route::get('api2', ['middleware' => 'oauth', function() {
 Route::post('oauth/access_token', function() {
 	return Response::json(Authorizer::issueAccessToken());
 });
-
-/*
-$api->version('v1', ['middleware' => 'api.auth'] , function ($api) {
-    $api->get('time', function () {
-        return ['now' => microtime(), 'date' => date('Y-M-D',time())];
-    });
-});
-*/

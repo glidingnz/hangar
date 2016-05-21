@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests;
 use App\Models\Org;
 
-class OrgController extends Controller
+class OrgController extends ApiController
 {
 	/**
 	 * Display a listing of the resource.
@@ -16,7 +17,9 @@ class OrgController extends Controller
 	 */
 	public function index()
 	{
-		//
+		$data['data'] = Org::all();
+		$data['success'] = true;
+		return $data; 
 	}
 
 	/**
