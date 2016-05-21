@@ -103,8 +103,10 @@ class OrgController extends ApiController
 		//
 	}
 
-	public function test()
+	public function test(Request $request)
 	{
+		$this->data['org'] = $request->get('org');
+
 		$this->data['user'] = $this->fetch_user();
 		return $this->bad_request();
 	}

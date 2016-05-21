@@ -51,7 +51,7 @@ Route::group(['prefix'=>'api/private', 'namespace' => 'Api'], function()
 	Route::get('/orgs/{id}',  'V1\OrgController@show');
 
 	// Cookies required
-	Route::group(['middleware' => 'auth'], function () {
+	Route::group(['middleware' => ['auth','load-org']], function () {
 		Route::get('/time', 'v1\OrgController@test');
 	});
 });
