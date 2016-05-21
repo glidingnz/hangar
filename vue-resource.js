@@ -10439,24 +10439,27 @@ exports.insert = function (css) {
 }
 
 },{}],5:[function(require,module,exports){
-(function (global){
 'use strict';
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
 
 var _messages = require('./messages.vue');
 
 var _messages2 = _interopRequireDefault(_messages);
 
+var _orgs = require('./orgs.vue');
+
+var _orgs2 = _interopRequireDefault(_orgs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var gnz = {};
 
-global.Vue = require('vue');
-//import Vue from 'vue';
-
-
-gnz.messages = new Vue({
-	el: '#messages',
-	components: { Messages: _messages2.default },
+gnz.messages = new _vue2.default({
+	el: '#app-layout',
+	components: { Messages: _messages2.default, Orgs: _orgs2.default },
 	created: function created() {},
 	methods: {
 		'success': function success(msg) {
@@ -10475,6 +10478,7 @@ gnz.messages = new Vue({
 });
 
 if (typeof messages != 'undefined') {
+	//gnz.messages;
 	messages.forEach(function (message) {
 		switch (message.type) {
 			case 'success':
@@ -10501,8 +10505,7 @@ new Vue({
 });
 */
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./messages.vue":6,"vue":3}],6:[function(require,module,exports){
+},{"./messages.vue":6,"./orgs.vue":7,"vue":3}],6:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n.messages {\n\tpadding: 0 15px;\n}\n.message {\n\tpadding: 10px;\n\tmargin: 20px 0;\n\tborder-radius: 4px;\n\ttext-align: center;\n\tcolor: #FFF;\n}\n.message a {\n\tcolor: #FFF;\n}\n\n.message-error {\n\tbackground-color: #A00;\n}\n.message-warning {\n\tbackground-color: #DC9200;\n}\n.message-success {\n\tbackground-color: #0A0;\n}\n.message-note {\n\tbackground-color: #3C8DBC;\n}\n\n.error {\n\tcolor: #A00;\n}\n.warning {\n\tcolor: #DC9200;\n}\n.success {\n\tcolor: #0A0;\n}\n.note {\n\tcolor: #3C8DBC;\n}\n")
 'use strict';
 
@@ -10557,6 +10560,48 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
+},{"vue":3,"vue-hot-reload-api":2,"vueify-insert-css":4}],7:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert("\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			clubs: []
+		};
+	},
+	created: function created() {
+		this.loadClubs();
+	},
+	methods: {
+		loadClubs: function loadClubs() {
+			this.$http.get('/api/v1/clubs').then(function (response) {
+				// success callback
+				this.clubs = response.data;
+			});
+		}
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ul class=\"orgs\" id=\"orgs\">\n\t<li v-for=\"org in orgs\">@{{org.name}}</li>\n</ul>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "/Library/WebServer/Documents/gliding.nz/hangar/resources/assets/js/orgs.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache["\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
 },{"vue":3,"vue-hot-reload-api":2,"vueify-insert-css":4}]},{},[5]);
 
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=vue-resource.js.map

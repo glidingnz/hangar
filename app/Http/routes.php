@@ -27,26 +27,44 @@ Route::get('/home', 'HomeController@index');
 
 
 /**
- * OAuth
+ * OAuth Public API
  */
-
 Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 {
-	Route::get('/now', ['middleware' => 'oauth', function() {
-		return ['now' => microtime(), 'date' => date('Y-M-D',time())];
-	}]);
-
 	Route::get('/orgs',  'OrgController@index');
+	Route::get('/orgs/{id}',  'OrgController@show');
 
+	// OAuth required
+	Route::group(['middleware' => 'oauth'], function () {
+		Route::get('/time', 'OrgController@test');
+	});
 
 });
 
 
-Route::get('api2', ['middleware' => 'oauth', function() {
-	// return the protected resource
-	//echo “success authentication”;
-	return ['now' => microtime(), 'date' => date('Y-M-D',time())];
-}]);
+/**
+ * Private cookie based API. Intended for the internal app only.
+ */
+Route::group(['prefix'=>'api/private', 'namespace' => 'Api'], function()
+{
+	Route::get('/orgs',  'V1\OrgController@index');
+	Route::get('/orgs/{id}',  'V1\OrgController@show');
+
+	// Cookies required
+	Route::group(['middleware' => 'auth'], function () {
+		Route::get('/time', 'v1\OrgController@test');
+	});
+});
+
+
+// Route::get('/time', function() {
+// 	return ['now' => microtime(), 'date' => date('Y-M-D',time())];
+// });
+// Route::get('api2', ['middleware' => 'oauth', function() {
+// 	// return the protected resource
+// 	//echo “success authentication”;
+// 	return ['now' => microtime(), 'date' => date('Y-M-D',time())];
+// }]);
 
 
 

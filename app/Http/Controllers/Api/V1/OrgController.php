@@ -17,9 +17,11 @@ class OrgController extends ApiController
 	 */
 	public function index()
 	{
-		$data['data'] = Org::all();
-		$data['success'] = true;
-		return $data; 
+		if ($orgs = Org::all())
+		{
+			return $this->success($orgs);
+		}
+		return $this->error(); 
 	}
 
 	/**
@@ -51,7 +53,20 @@ class OrgController extends ApiController
 	 */
 	public function show($id)
 	{
-		//
+		if (is_numeric($id))
+		{
+			if ($org = Org::find($id))
+			{
+				return $this->success($org);
+			}
+		} else {
+			if ($org = Org::where('slug', $id)->first())
+			{
+				return $this->success($org);
+			}
+		}
+		
+		return $this->not_found();
 	}
 
 	/**
@@ -86,5 +101,11 @@ class OrgController extends ApiController
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function test()
+	{
+		$this->data['user'] = $this->fetch_user();
+		return $this->bad_request();
 	}
 }

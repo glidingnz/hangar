@@ -1,10 +1,11 @@
 var gnz = {};
 
-import Vue from 'vue';
+global.Vue = require('vue');
+//import Vue from 'vue';
 import Messages from './messages.vue';
 
 gnz.messages = new Vue({
-	el: '#app',
+	el: '#messages',
 	components: { Messages },
 	created: function() {
 		
@@ -26,7 +27,6 @@ gnz.messages = new Vue({
 });
 
 if (typeof messages != 'undefined') {
-	//gnz.messages;
 	messages.forEach(function(message) {
 		switch (message.type) {
 			case 'success': gnz.messages.success(message.text); break;

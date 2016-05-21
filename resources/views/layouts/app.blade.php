@@ -10,7 +10,7 @@
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> --}}
 	{{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
 
@@ -55,7 +55,7 @@
 		</div>
 	</nav>
 
-	<div id="app">
+	<div id="messages">
 		<messages></messages>
 	</div>
 	
@@ -82,9 +82,12 @@
 		}
 		?>
 
-	<script type="text/javascript" src="/js/app.js"></script>
 
-	<!-- load page specific scripts -->
-	@yield('scripts')
+		<script type="text/javascript" src="/js/app.js"></script>
+		<script type="text/javascript" src="/js/vue-resource.js"></script>
+		
+		<!-- load page specific scripts -->
+		@yield('scripts')
+
 </body>
 </html>
