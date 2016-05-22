@@ -8,4 +8,4 @@ This app is built on Laravel 5.2
 
 https://laravel.com/docs/5.2
 
-Proper instructions coming soon.
+Proper instructions coming soon...

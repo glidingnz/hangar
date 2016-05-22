@@ -18,13 +18,36 @@ class HomeController extends Controller
 	}
 
 	/**
-	 * Show the application dashboard.
+	 * Show the apps list.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function switchOrg(Request $request)
+	{
+		//if ($request->user()->can('admin')) echo 'yah';
+		return view('switchorg');
+	}
+
+	/**
+	 * Show the apps list.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index(Request $request)
 	{
-		if ($request->user()->can('admin')) echo 'yah';
+		//if ($request->user()->can('admin')) echo 'yah';
 		return view('home');
+	}
+
+
+	/**
+	 * Show the apps list.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function apps(Request $request)
+	{
+		//if ($request->user()->can('admin')) echo 'yah';
+		return view('apps');
 	}
 }

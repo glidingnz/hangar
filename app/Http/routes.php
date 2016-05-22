@@ -12,9 +12,7 @@
 */
 
 
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 
 Route::auth();
@@ -23,7 +21,10 @@ Route::post('/register', 'UsersController@create');
 Route::get('/activate', 'UsersController@activate');
 Route::post('/activate', 'UsersController@activate_post');
 
-Route::get('/home', 'HomeController@index');
+Route::get('/clubs', 'HomeController@switchOrg');
+Route::get('/apps', 'HomeController@apps');
+
+Route::get('/aircraft', 'AircraftController@index');
 
 
 /**

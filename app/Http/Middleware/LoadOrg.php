@@ -24,7 +24,7 @@ class LoadOrg
 			$request->attributes->add(['org' => $org]);
 			return $next($request);
 		}
-		// if no site is found, return to the homepage
-		return redirect('/');
+		// if no site is found, return to the switch page
+		return redirect('/switch');
 	}
 }
