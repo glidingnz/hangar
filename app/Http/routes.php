@@ -24,7 +24,10 @@ Route::post('/activate', 'UsersController@activate_post');
 Route::get('/clubs', 'HomeController@switchOrg');
 Route::get('/apps', 'HomeController@apps');
 
-Route::get('/aircraft', 'AircraftController@index');
+Route::group(['middleware' => 'load-org'], function()
+{
+	Route::get('/aircraft', 'AircraftController@index');
+});
 
 
 /**
@@ -32,13 +35,23 @@ Route::get('/aircraft', 'AircraftController@index');
  */
 Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 {
-	Route::get('/orgs',  'OrgController@index');
-	Route::get('/orgs/{id}',  'OrgController@show');
-
 	// OAuth required
 	Route::group(['middleware' => 'oauth'], function () {
 		Route::get('/time', 'OrgController@test');
+
+
+		Route::resource('aircraft', 'AircraftController', ['only' => [
+			'create', 'store', 'edit', 'update', 'destroy'
+		]]);
 	});
+
+	// Public
+	Route::get('/orgs',  'OrgController@index');
+	Route::get('/orgs/{id}',  'OrgController@show');
+
+	Route::resource('aircraft', 'AircraftController', ['only' => [
+		'index', 'show'
+	]]);
 
 });
 
@@ -46,10 +59,11 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 /**
  * Private cookie based API. Intended for the internal app only.
  */
-Route::group(['prefix'=>'api/private', 'namespace' => 'Api'], function()
+Route::group(['prefix'=>'api/private'], function()
 {
-	Route::get('/orgs',  'V1\OrgController@index');
-	Route::get('/orgs/{id}',  'V1\OrgController@show');
+	Route::get('/orgs',  'Api\V1\OrgController@index');
+	Route::get('/orgs/{id}',  'Api\V1\OrgController@show');
+	Route::get('/aircraft/import',  'AircraftController@load_from_caa');
 
 	// Cookies required
 	Route::group(['middleware' => ['auth','load-org']], function () {
