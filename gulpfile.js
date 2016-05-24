@@ -15,4 +15,5 @@ elixir(function(mix) {
 	mix.stylesIn('resources/assets/css');
 	mix.browserify('app.js');
 	mix.scripts('home.js');
+	mix.browserSync();
 });

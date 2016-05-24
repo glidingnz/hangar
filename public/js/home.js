@@ -24,30 +24,4 @@ Vue.component('orgs-component', OrgsComponent);
 new Vue({
 	el: '#test'
 })
-
-/*
-gnz.messages = new Vue({
-	el: '#app-layout',
-	components: { Messages },
-	created: function() {
-		
-	},
-	methods: {
-	}
-});
-
-if (typeof messages != 'undefined') {
-	//gnz.messages;
-	messages.forEach(function(message) {
-		switch (message.type) {
-			case 'success': gnz.messages.success(message.text); break;
-			case 'error': gnz.messages.error(message.text); break;
-			case 'note': gnz.messages.note(message.text); break;
-			case 'warning': gnz.messages.warning(message.text); break;
-		}
-	})
-	console.log(messages);
-}
-
-*/
 //# sourceMappingURL=home.js.map
