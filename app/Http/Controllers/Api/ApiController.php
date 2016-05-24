@@ -20,8 +20,15 @@ class ApiController extends Controller
 		$this->data['http_code']=500;
 	}
 
-	public function success($data)
+	public function success($data, $paginated=false)
 	{
+		if ($paginated)
+		{
+			$item = $data->toArray();
+			$data = $item['data'];
+			unset($item['data']);
+			$this->data = array_merge($this->data, $item);
+		}
 		$this->data['data'] = $data;
 		$this->data['success']=true;
 		$this->data['http_code']=200;
