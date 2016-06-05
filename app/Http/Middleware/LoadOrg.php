@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Org;
+use App\Facades\Messages;
 
 class LoadOrg
 {
@@ -25,6 +26,9 @@ class LoadOrg
 			return $next($request);
 		}
 		// if no site is found, return to the switch page
-		return redirect('/switch');
+
+		//$temp_errors[] = 'Doing it wrong';
+		//$request->session()->flash('errors', $temp_errors);
+		return redirect('/clubs');
 	}
 }

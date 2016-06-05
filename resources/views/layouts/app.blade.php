@@ -69,6 +69,7 @@
 			Messages::error(Session::get('error'));
 			//$messages['error'][] = Session::get('error');
 		}
+		/*
 		if (isset($errors))
 		{
 			foreach ($errors->all() as $error)
@@ -76,6 +77,7 @@
 				Messages::error($error);
 			}
 		}
+		*/
 		$messages = Messages::fetch();
 		if (isset($messages))
 		{

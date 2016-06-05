@@ -143,6 +143,31 @@ class AircraftController extends Controller
 								break;
 						}
 					}
+					
+					// check for existing tow planes
+					switch ($row[1]) {
+						case 'BZA':
+						case 'RDW':
+						case 'TGC':
+						case 'JTA':
+						case 'LJW':
+						case 'PZL':
+						case 'BKJ':
+						case 'PNE':
+						case 'CEB':
+						case 'DSM':
+						case 'TOW':
+						case 'BFV':
+						case 'TPO':
+						case 'OMA':
+						case 'CNG':
+						case 'BNM':
+						case 'DNS':
+						case 'ERW':
+							$aircraft->towplane = true;
+							break;
+					}
+
 					$aircraft->save();
 				}
 			}

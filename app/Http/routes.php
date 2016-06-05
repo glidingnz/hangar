@@ -21,6 +21,11 @@ Route::post('/register', 'UsersController@create');
 Route::get('/activate', 'UsersController@activate');
 Route::post('/activate', 'UsersController@activate_post');
 
+// pages that must be logged in
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/account', 'UsersController@account');
+});
+
 Route::get('/clubs', 'HomeController@switchOrg');
 Route::get('/apps', 'HomeController@apps');
 
@@ -44,7 +49,7 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 			'create', 'store', 'edit', 'update', 'destroy'
 		]]);
 	});
-
+ 
 	// Public
 	Route::get('/orgs',  'OrgController@index');
 	Route::get('/orgs/{id}',  'OrgController@show');

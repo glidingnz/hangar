@@ -37,10 +37,11 @@
 		padding: 10px 20px;
 	}
 }
-
 </style>
 
 <div class="container">
+
+	<h1>Apps</h1>
 
 	<div class="app-panel col-xs-12 col-sm-4 col-md-3">
 		<div class="row app-panel-inner hover-btn hover-btn-active">

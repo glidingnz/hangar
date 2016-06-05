@@ -96,7 +96,7 @@ class AircraftController extends ApiController
 	 */
 	public function show($id)
 	{
-		if ($aircraft = Aircraft::all())
+		if ($aircraft = Aircraft::find($id))
 		{
 			return $this->success($aircraft);
 		}

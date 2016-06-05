@@ -28,3 +28,9 @@ h1, h2, h3, h4 {
 	cursor: pointer;
 	background-color: #F3F3F3;
 }
+
+
+label {
+	font-weight: normal;
+	color: #888;
+}
