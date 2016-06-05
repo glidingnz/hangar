@@ -1,9 +1,10 @@
 
 .navbar {
-	background-color: #F0F0F0;
-	-webkit-box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
-	-moz-box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
-	box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
+	background-color: #FFF;
+	-webkit-box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.1);
+	box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.1);
+	border-bottom: 1px solid #DDD;
 }
 
 h1, h2, h3, h4 {
@@ -11,22 +12,26 @@ h1, h2, h3, h4 {
 }
 
 .hover-btn {
-	background-color: #F0F0F0;
+	background-color: #FFF;
 	text-align: center;
 	padding: 20px;
-	-webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.3);
-	-moz-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.3);
-	box-shadow: 0 8px 10px -5px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
+	box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 	transform: translate3d(0px, 0px, 0px);
 	transition: all .1s ease-in-out;
+	border: 1px solid #DDD;
 }
 .hover-btn-active:hover {
-	-webkit-box-shadow: 0 16px 12px -10px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0 16px 12px -10px rgba(0,0,0,0.2);
-	box-shadow: 0 16px 12px -10px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 16px 12px -10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 16px 12px -10px rgba(0,0,0,0.1);
+	box-shadow: 0 16px 12px -10px rgba(0,0,0,0.1);
 	transform: translate3d(0px, -3px, 0px);
 	cursor: pointer;
-	background-color: #F3F3F3;
+	background-color: #F8F8F8;
 }
 
 

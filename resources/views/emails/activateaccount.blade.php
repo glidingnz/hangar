@@ -2,4 +2,4 @@
 
 <p>To continue, click the following link to activate your account:</p>
 
-<p><a href="{{ $domain }}">{{ $domain }}</a></p>
+<p><a href="{{ $url }}">{{ $url }}</a></p>

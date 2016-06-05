@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Member;
 use App\Facades\Messages;
 use App\Http\Requests;
 use App;
@@ -22,19 +23,26 @@ class UsersController extends Controller
 	public function view_account()
 	{
 		$user = Auth::user();
+		$member = Member::where('nzga_number', $user->gnz_id)->first();
 
-		return view('account', $user);
+		return view('account', ['user'=>$user, 'member'=>$member]);
 	}
 
 
 	public function update_account(Request $request)
 	{
+		Validator::extend('foo', function($attribute, $value, $parameters, $validator) {
+			return $value == 'foo';
+		});
+
 		$user = Auth::user();
 		$validator = Validator::make($request->all(), [
 			'email' => 'required|email|unique:users,email,' . $user->id,
 			'first_name' => 'required',
-			'last_name' => 'required'
+			'last_name' => 'required',
+			'gnz_id' => 'integer'
 		]);
+
 		if ($validator->passes())
 		{
 			// update details
@@ -48,6 +56,23 @@ class UsersController extends Controller
 				$updated_user->activation_code = str_random(10); // create an activation code
 				$request->session()->flash('warning', 'You\'ll need to re-validate your email address. Check your email and follow the instructions');
 				$this->send_activation_email($updated_user->email, $updated_user->activation_code);
+			}
+
+			// check validation of GNZ number if it has changed
+			if ($updated_user->activated && $updated_user->gnz_active==false)
+			{
+				$gnz_id = $updated_user->gnz_id;
+				if ($request->input('gnz_id')) $gnz_id = $request->input('gnz_id');
+
+
+				if ($gnz_account = App\Models\Member::where('nzga_number', $gnz_id)->first())
+				{
+					if ($gnz_account->email==$user->email)
+					{
+						$updated_user->gnz_active = true;
+					}
+				}
+				
 			}
 
 			$updated_user->first_name = $request->input('first_name');
@@ -133,9 +158,9 @@ class UsersController extends Controller
 	public function send_activation_email($new_email, $activation_code)
 	{
 		$user = Auth::user();
-		$domain = App::make('url')->to('/activate') . '?code=' . $activation_code;
+		$url = App::make('url')->to('/activate') . '?code=' . $activation_code;
 
-		Mail::send('emails.activateaccount', ['user' => $user, 'domain' => $domain], function ($m) use ($new_email) {
+		Mail::send('emails.activateaccount', ['user' => $user, 'url' => $url], function ($m) use ($new_email) {
 			$m->from('tim@pear.co.nz', 'Gliding New Zealand');
 			$m->to($new_email)->subject('Activate your GNZ Account');
 		});
