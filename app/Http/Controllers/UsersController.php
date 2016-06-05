@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App;
 use Auth;
 use Validator;
+use Mail;
 
 class UsersController extends Controller
 {
@@ -38,15 +39,17 @@ class UsersController extends Controller
 		{
 			// update details
 			$updated_user = App\Models\User::find($user->id);
+			$updated_user->email = $request->input('email');
 
 			// check if we need to validate the email again
-			if ($user->email != $request->input('email'))
+			if ($user->email != $request->input('email') || $request->input('resend-validation'))
 			{
 				$updated_user->activated=false;
+				$updated_user->activation_code = str_random(10); // create an activation code
 				$request->session()->flash('warning', 'You\'ll need to re-validate your email address. Check your email and follow the instructions');
+				$this->send_activation_email($updated_user->email, $updated_user->activation_code);
 			}
 
-			$updated_user->email = $request->input('email');
 			$updated_user->first_name = $request->input('first_name');
 			$updated_user->last_name = $request->input('last_name');
 			$updated_user->gnz_id = $request->input('gnz_id', 0);
@@ -72,6 +75,7 @@ class UsersController extends Controller
 		$user->api_token = str_random(60); // create an activation code
 		$user->save();
 
+		$this->send_activation_email($user->email, $user->activation_code);
 		Messages::success('Account Created. Check your email to activate your account.');
 		return view('blank');
 	}
@@ -117,15 +121,23 @@ class UsersController extends Controller
 	{
 		if ($user = App\Models\User::where('activation_code', $request->input('code'))->first())
 		{
-			return view('auth/activate', ['code' => $request->input('code')]);
+			return view('auth/activate', ['code' => $request->input('code'), 'user'=>$user]);
 		}
 
 		Messages::error('Acitvation code not valid');
 		return view('blank');
 	}
 
-	public function send_activation_email()
+
+
+	public function send_activation_email($new_email, $activation_code)
 	{
-		
+		$user = Auth::user();
+		$domain = App::make('url')->to('/activate') . '?code=' . $activation_code;
+
+		Mail::send('emails.activateaccount', ['user' => $user, 'domain' => $domain], function ($m) use ($new_email) {
+			$m->from('tim@pear.co.nz', 'Gliding New Zealand');
+			$m->to($new_email)->subject('Activate your GNZ Account');
+		});
 	}
 }
