@@ -23,7 +23,8 @@ Route::post('/activate', 'UsersController@activate_post');
 
 // pages that must be logged in
 Route::group(['middleware' => ['auth']], function () {
-	Route::get('/account', 'UsersController@account');
+	Route::get('/account', 'UsersController@view_account');
+	Route::post('/update-account', 'UsersController@update_account');
 });
 
 Route::get('/clubs', 'HomeController@switchOrg');

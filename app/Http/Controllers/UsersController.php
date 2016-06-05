@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Facades\Messages;
 use App\Http\Requests;
 use App;
+use Auth;
+use Validator;
 
 class UsersController extends Controller
 {
@@ -14,6 +16,47 @@ class UsersController extends Controller
 	{
 		return view('auth/register');
 	}
+
+
+	public function view_account()
+	{
+		$user = Auth::user();
+
+		return view('account', $user);
+	}
+
+
+	public function update_account(Request $request)
+	{
+		$user = Auth::user();
+		$validator = Validator::make($request->all(), [
+			'email' => 'required|email|unique:users,email,' . $user->id,
+			'first_name' => 'required',
+			'last_name' => 'required'
+		]);
+		if ($validator->passes())
+		{
+			// update details
+			$updated_user = App\Models\User::find($user->id);
+
+			// check if we need to validate the email again
+			if ($user->email != $request->input('email'))
+			{
+				$updated_user->activated=false;
+				$request->session()->flash('warning', 'You\'ll need to re-validate your email address. Check your email and follow the instructions');
+			}
+
+			$updated_user->email = $request->input('email');
+			$updated_user->first_name = $request->input('first_name');
+			$updated_user->last_name = $request->input('last_name');
+			$updated_user->gnz_id = $request->input('gnz_id', 0);
+			$updated_user->save();
+
+			$request->session()->flash('success', 'Account Updated');
+		}
+		return redirect('/account')->withInput()->withErrors($validator);
+	}
+
 
 
 
@@ -79,5 +122,10 @@ class UsersController extends Controller
 
 		Messages::error('Acitvation code not valid');
 		return view('blank');
+	}
+
+	public function send_activation_email()
+	{
+		
 	}
 }

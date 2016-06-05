@@ -65,24 +65,21 @@
 	@yield('content')
 
 		<?php
-		if (Session::has('error')) {
-			Messages::error(Session::get('error'));
-			//$messages['error'][] = Session::get('error');
-		}
-		/*
-		if (isset($errors))
+		// get messages defined by flash data
+		if (Session::has('error')) Messages::error(Session::get('error'));
+		if (Session::has('success')) Messages::success(Session::get('success'));
+		if (Session::has('warning')) Messages::warning(Session::get('warning'));
+		if (Session::has('note')) Messages::note(Session::get('note'));
+
+		// get all validation errors
+		foreach ($errors->all() as $error)
 		{
-			foreach ($errors->all() as $error)
-			{
-				Messages::error($error);
-			}
+			Messages::error($error);
 		}
-		*/
+
+		// fetch all messages stored in the messages system to hand over to javascript
 		$messages = Messages::fetch();
-		if (isset($messages))
-		{
-			echo '<script>var messages='. json_encode($messages) . ';</script>';
-		}
+		echo '<script>var messages='. json_encode($messages) . ';</script>';
 		?>
 
 

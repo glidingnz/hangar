@@ -29,6 +29,11 @@ h1, h2, h3, h4 {
 	background-color: #F3F3F3;
 }
 
+
+label {
+	font-weight: normal;
+	color: #888;
+}
 /*!
  *  Font Awesome 4.6.2 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
