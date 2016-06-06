@@ -6,9 +6,74 @@
 	<h1><a href="/aircraft">Aircraft</a> &raquo; {{$rego}}</h1>
 	
 	<div class="row">
-		
+		<label class="col-xs-2">Registration</label>
+		<div class="col-xs-8">{{$rego}}</div>
 	</div>
-
+	
+	<div class="row">
+		<label class="col-xs-2">Manufacturer</label>
+		<div class="col-xs-8">{{$manufacturer}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">serial</label>
+		<div class="col-xs-8">{{$serial}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Model</label>
+		<div class="col-xs-8">{{$model}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Owner</label>
+		<div class="col-xs-8">{{$owner}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">mctow</label>
+		<div class="col-xs-8">{{$mctow}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">CAA Class</label>
+		<div class="col-xs-8">{{$class}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Transponder</label>
+		<div class="col-xs-8">{{$transponder}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Trailer</label>
+		<div class="col-xs-8">{{$trailer}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Seats</label>
+		<div class="col-xs-8">{{$seats}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Towplane?</label>
+		<div class="col-xs-8">{{$towplane}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Self Launcher?</label>
+		<div class="col-xs-8">{{$self_launcher}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Sustainer?</label>
+		<div class="col-xs-8">{{$sustainer}}</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-xs-2">Retractable?</label>
+		<div class="col-xs-8">{{$retractable}}</div>
+	</div>
 </div>
 
 @endsection
