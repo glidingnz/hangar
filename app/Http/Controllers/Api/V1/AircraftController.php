@@ -87,6 +87,9 @@ class AircraftController extends ApiController
 					$queryAircraft->orWhere('self_launcher','=','1');
 				});
 				break;
+			case 'vintage':
+				$queryAircraft->where('vintage','=','1');
+				break;
 		}
 
 

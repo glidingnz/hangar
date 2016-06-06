@@ -33,9 +33,10 @@
 
 		<div class="btn-group col-md-6" role="group">
 			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='glider' }" v-on:click="filterTo('glider')">All Gliders</button>
-			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='engine' }" v-on:click="filterTo('engine')">Engine</button>
+			<?php /* <button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='engine' }" v-on:click="filterTo('engine')">Engine</button> */ ?>
 			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='self-launch' }" v-on:click="filterTo('self-launch')">Launchers</button>
 			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='sustainer' }" v-on:click="filterTo('sustainer')">Sustainer</button>
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='vintage' }" v-on:click="filterTo('vintage')">Vintage</button>
 			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='tug' }" v-on:click="filterTo('tug')">Tugs</button>
 		</div>
 

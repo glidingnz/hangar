@@ -12,7 +12,6 @@ class CreateAircraftTable extends Migration
 	 */
 	public function up()
 	{
-		
 		Schema::create('aircraft', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('rego')->unique();
@@ -32,6 +31,7 @@ class CreateAircraftTable extends Migration
 			$table->boolean('self_launcher')->default(0);
 			$table->boolean('sustainer')->default(0);
 			$table->boolean('retractable')->default(0);
+			$table->boolean('vintage')->default(0);
 			$table->timestamps();
 		});
 	}

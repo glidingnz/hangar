@@ -3,7 +3,7 @@
 @section('content')
 <style>
 .app-panel {
-	padding: 20px 40px;
+	padding: 20px 30px;
 }
 .app-panel-inner .fa {
 	font-size: 400%;
@@ -21,6 +21,7 @@
 }
 .app-panel h3 {
 	margin-top: .6em;
+	font-size: 160%;
 }
 
 @media all and (max-width: 768px) {
@@ -47,6 +48,13 @@
 		<div class="row app-panel-inner hover-btn hover-btn-active">
 			<a class="col-xs-2 col-sm-12" href="/aircraft"><i class="fa fa-plane"></i></a>
 			<h3 class="col-xs-10 col-sm-12"><a href="/aircraft">Aircraft</a></h3>
+		</div>
+	</div>
+	
+	<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+		<div class="row app-panel-inner hover-btn hover-btn-active">
+			<a class="col-xs-2 col-sm-12" href="/fleet"><i class="fa fa-paper-plane"></i></a>
+			<h3 class="col-xs-10 col-sm-12"><a href="/fleet">Our Fleet</a></h3>
 		</div>
 	</div>
 	
@@ -84,7 +92,7 @@
 	<div class="app-panel col-xs-12 col-sm-4 col-md-3">
 		<div class="row app-panel-inner hover-btn disabled">
 			<i class="col-xs-2 col-sm-12 fa fa-users"></i>
-			<h3 class="col-xs-10 col-sm-12">Membership</h3>
+			<h3 class="col-xs-10 col-sm-12">Members</h3>
 		</div>
 	</div>
 
@@ -92,6 +100,13 @@
 		<div class="row app-panel-inner hover-btn disabled">
 			<i class="col-xs-2 col-sm-12 fa fa-book"></i>
 			<h3 class="col-xs-10 col-sm-12">Bookings</h3>
+		</div>
+	</div>
+
+	<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+		<div class="row app-panel-inner hover-btn disabled">
+			<i class="col-xs-2 col-sm-12 fa fa-home"></i>
+			<h3 class="col-xs-10 col-sm-12">Accomodation</h3>
 		</div>
 	</div>
 

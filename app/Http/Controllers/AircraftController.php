@@ -115,7 +115,7 @@ class AircraftController extends Controller
 						}
 					}
 
-					// check for common 2 seaters
+					// check for common glider features
 					if ($row[0]=='Power Glider' || $row[0]=='Glider')
 					{
 						switch ($row[3])
@@ -161,8 +161,40 @@ class AircraftController extends Controller
 								$aircraft->retractable = true;
 								break;
 						}
+
+
+						// check for common vintage gliders
+						switch ($row[3]) {
+							case 'Ka 6CR':
+							case 'Ka 6E':
+							case 'Standard Libelle':
+							case 'H 301 B Libelle':
+							case 'H 301 Libelle':
+							case 'Standard Libelle 201B':
+							case 'Club Libelle 205':
+							case 'K 7 Rhonadler':
+							case 'T.43 Skylark 3F':
+							case 'Baby Eon':
+							case 'T.51 Dart':
+							case 'T.51 Dart 17R':
+							case 'BG 12-16':
+							case 'E.S.52/II Kookaburra':
+							case 'T.41B Skylark 2':
+							case 'T.41B Skylark 2B':
+							case 'T.43 Skylark 3F':
+							case 'T.50 Skylark 4':
+							case 'T.65A Vega':
+							case 'K 8B':
+								$aircraft->vintage = true;
+								break;
+							default:
+								$aircraft->vintage = false;
+								break;
+						}
 					}
 					
+
+
 					// check for existing tow planes
 					switch ($row[1]) {
 						case 'BZA':
