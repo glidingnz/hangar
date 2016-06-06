@@ -133,23 +133,24 @@ new Vue({
 		var State = History.getState();
 
 		// load existing GET params
-		this.state.page = get_url_param('search') ? get_url_param('search') : '';
-		this.state.page = get_url_param('page') ? get_url_param('page') : 1;
-		this.state.type = get_url_param('type') ? get_url_param('type') : 'glider';
-
-		this.loadSelected();
+		if (get_url_param('search')) this.state.page = get_url_param('search');
+		if (get_url_param('page')) this.state.page = get_url_param('page');
+		if (get_url_param('type')) this.state.type = get_url_param('type');
 
 		var that = this;
 
+		
 		History.Adapter.bind(window, 'statechange', function() {
 			var state = History.getState();
 			that.state = state.data;
+			that.loadSelected();
 		});
 
+		History.replaceState(this.state, null, "?search=" + this.state.search + "&type=" + this.state.type + "&page=" + this.state.page);
 	},
 	watch: {
 		'state': {
-			handler: 'loadSelected',
+			handler: 'stateChanged',
 			deep: true
 		}
 	},
@@ -158,8 +159,10 @@ new Vue({
 			this.state.type = type;
 			this.state.page=1;
 		},
+		stateChanged: function() {
+			History.pushState(this.state, null, "?search=" + this.state.search + "&type=" + this.state.type + "&page=" + this.state.page);
+		},
 		loadSelected: function() {
-			History.pushState(this.state, "Search", "?search=" + this.state.search + "&type=" + this.state.type + "&page=" + this.state.page);
 
 			this.$http.get('/api/v1/aircraft', this.state).then(function (response) {
 				this.results = response.data.data;

@@ -27,6 +27,12 @@ class AircraftController extends Controller
 	}
 
 
+	public function fleet($rego)
+	{
+		
+	}
+
+
 
 	public function load_nz()
 	{

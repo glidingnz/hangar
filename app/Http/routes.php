@@ -30,10 +30,14 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/clubs', 'HomeController@switchOrg');
 Route::get('/apps', 'HomeController@apps');
 
+/* nationwide apps */
+Route::get('/aircraft', 'AircraftController@index');
+Route::get('/aircraft/{rego}', 'AircraftController@view');
+
+/* club apps */
 Route::group(['middleware' => 'load-org'], function()
 {
-	Route::get('/aircraft', 'AircraftController@index');
-	Route::get('/aircraft/{rego}', 'AircraftController@view');
+	Route::get('/fleet', 'AircraftController@fleet');
 });
 
 
