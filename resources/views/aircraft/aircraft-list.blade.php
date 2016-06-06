@@ -1,40 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+.results-title {
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+.btn-group {
+	margin-bottom: 20px;
+}
+</style>
+
+
 <div class="container" id="aircraft">
-	<h1>Aircraft</h1>
+	<div class="row">
+		<h1 class="col-xs-6 col-md-8">Aircraft</h1>
 
+		<div class="btn-group   col-md-4 col-xs-6 pull-right" role="group">
 
-	<div class="btn-group" role="group" style="margin-bottom: 20px;">
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='glider' }" v-on:click="filterTo('glider')">All Gliders</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='self-launch' }" v-on:click="filterTo('self-launch')">Self Launch</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='sustainer' }" v-on:click="filterTo('sustainer')">Sustainer</button>
-	</div>
+			<div class="input-group">
+			<div class="input-group-btn">
+				<button class="btn btn-default" type="submit" v-on:click="state.search=''"><i class="fa fa-times"></i></button>
+			</div>
+				<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" v-model="state.search" debounce="300">
+			</div>
 
-	<div class="btn-group" role="group" style="margin-bottom: 20px;">
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='tow' }" v-on:click="filterTo('tow')">Tow Planes</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='gyrocopter' }" v-on:click="filterTo('gyrocopter')">Gyrocopter</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='helicopter' }" v-on:click="filterTo('helicopter')">Helicopter</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='balloon' }" v-on:click="filterTo('balloon')">Balloons</button>
-		<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': type=='all' }" v-on:click="filterTo('all')">All NZ Aircraft</button>
-	</div>
-
-	<div class="input-group col-xs-3">
-		<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" v-model="search">
-		<div class="input-group-btn">
-			<button class="btn btn-default" type="submit" v-on:click="search=''"><i class="fa fa-times"></i></button>
 		</div>
 	</div>
-	
 
 	<div class="row">
-		<div class="col-xs-6">
-			<h2 style="margin-bottom: 20px;">@{{ total }} Results</h2>
+
+		<div class="btn-group col-md-6" role="group">
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='glider' }" v-on:click="filterTo('glider')">All Gliders</button>
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='engine' }" v-on:click="filterTo('engine')">Engine</button>
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='self-launch' }" v-on:click="filterTo('self-launch')">Launchers</button>
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='sustainer' }" v-on:click="filterTo('sustainer')">Sustainer</button>
+			<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='tug' }" v-on:click="filterTo('tug')">Tugs</button>
 		</div>
-		<div class="col-xs-6">
+
+		<div class="col-md-6">
+			<div class="btn-group pull-right" role="group">
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='gyrocopter' }" v-on:click="filterTo('gyrocopter')">Gyros</button>
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='helicopter' }" v-on:click="filterTo('helicopter')">Heli</button>
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='balloon' }" v-on:click="filterTo('balloon')">Balloons</button>
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='plane' }" v-on:click="filterTo('plane')">Planes</button>
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='microlight' }" v-on:click="filterTo('microlight')">Microlights</button>
+				<button type="button" class="btn btn-default" v-bind:class="{ 'btn-primary': state.type=='all' }" v-on:click="filterTo('all')">All</button>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div class="row">
+		<div class="col-xs-4">
+
+			<h4 class="results-title">@{{ total }} Results</h4>
+
+		</div>
+
+		<div class="col-xs-8">
 
 			<div class="btn-group pull-right" role="group">
-				<button type="button" class="btn btn-default disabled">Page @{{ page }} of @{{ last_page }}</button>
+				<button type="button" class="btn btn-default disabled">Page @{{ state.page }} of @{{ last_page }}</button>
 				<button type="button" class="btn btn-default" v-on:click="previous()">Previous</button>
 				<button type="button" class="btn btn-default" v-on:click="next()">Next</button>
 			</div>
@@ -44,13 +73,16 @@
 
 	
 
-	<table class="table table-striped">
+	<table class="table table-striped results-table ">
 		<tr>
 			<th>Rego</th>
 			<th>Contest ID</th>
 			<th>Manufacturer</th>
 			<th>Model</th>
 			<th>Class</th>
+			<th>Owner</th>
+			<th></th>
+			<th></th>
 		</tr>
 		<tr v-for="result in results">
 			<td>@{{ result.rego }}</td>
@@ -58,11 +90,18 @@
 			<td>@{{ result.manufacturer }}</td>
 			<td>@{{ result.model }}</td>
 			<td>@{{ result.class }}</td>
+			<td>@{{ result.owner }}</td>
+			<td>
+				<a href="https://www.caa.govt.nz/Script/AirReg3.asp?Mark=@{{ result.rego.substring(3,6) }}">CAA</a>
+			</td>
+			<td>
+				<a href="/aircraft/@{{result.rego}}" class="btn btn-primary btn-xs">View</a>
+			</td>
 		</tr>
 	</table>
 
 	<div class="btn-group pull-right" role="group">
-		<button type="button" class="btn btn-default disabled">Page @{{ page }} of @{{ last_page }}</button>
+		<button type="button" class="btn btn-default disabled">Page @{{ state.page }} of @{{ last_page }}</button>
 		<button type="button" class="btn btn-default" v-on:click="previous()">Previous</button>
 		<button type="button" class="btn btn-default" v-on:click="next()">Next</button>
 	</div>
@@ -74,45 +113,68 @@
 
 
 @section('scripts')
-<script>
 
+<script>
 new Vue({
 	el: '#aircraft',
 	data: {
-		type: 'glider',
-		page: 1,
+		state: {
+			type: 'glider',
+			page: 1,
+			search: ''
+		},
 		last_page: 1,
-		search: '',
 		total: 0,
 		results: []
 	},
 	created: function() {
+		// check for URL params
+		var State = History.getState();
+
+		// load existing GET params
+		this.state.page = get_url_param('search') ? get_url_param('search') : '';
+		this.state.page = get_url_param('page') ? get_url_param('page') : 1;
+		this.state.type = get_url_param('type') ? get_url_param('type') : 'glider';
+
 		this.loadSelected();
+
+		var that = this;
+
+		History.Adapter.bind(window, 'statechange', function() {
+			var state = History.getState();
+			that.state = state.data;
+		});
+
 	},
 	watch: {
-		'type': 'loadSelected',
-		'page': 'loadSelected',
-		'search': 'loadSelected'
+		'state': {
+			handler: 'loadSelected',
+			deep: true
+		}
 	},
 	methods: {
 		filterTo: function(type) {
-			this.type = type;
-			this.page=1;
+			this.state.type = type;
+			this.state.page=1;
 		},
 		loadSelected: function() {
-			var data = {type: this.type, page: this.page, search: this.search};
-			this.$http.get('/api/v1/aircraft', data).then(function (response) {
-				console.log(response.data);
+			History.pushState(this.state, "Search", "?search=" + this.state.search + "&type=" + this.state.type + "&page=" + this.state.page);
+
+			this.$http.get('/api/v1/aircraft', this.state).then(function (response) {
 				this.results = response.data.data;
 				this.last_page = response.data.last_page;
 				this.total = response.data.total;
+
+				if (this.state.page > this.last_page && this.last_page>0) {
+					this.state.page = 1;
+				}
 			});
 		},
 		next: function() {
-			if (this.page<this.last_page) this.page = this.page+1;
+			if (this.state.page<this.last_page) this.state.page = this.state.page+1;
 		},
 		previous: function() {
-			if (this.page>1) this.page = this.page-1;
+			if (this.state.page>1) this.state.page = this.state.page-1;
 		}
 	}
 });

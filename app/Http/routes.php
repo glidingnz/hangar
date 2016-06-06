@@ -33,6 +33,7 @@ Route::get('/apps', 'HomeController@apps');
 Route::group(['middleware' => 'load-org'], function()
 {
 	Route::get('/aircraft', 'AircraftController@index');
+	Route::get('/aircraft/{rego}', 'AircraftController@view');
 });
 
 
@@ -69,7 +70,7 @@ Route::group(['prefix'=>'api/private'], function()
 {
 	Route::get('/orgs',  'Api\V1\OrgController@index');
 	Route::get('/orgs/{id}',  'Api\V1\OrgController@show');
-	Route::get('/aircraft/import',  'AircraftController@load_from_caa');
+	Route::get('/aircraft/import-nz',  'AircraftController@load_nz');
 
 	// Cookies required
 	Route::group(['middleware' => ['auth','load-org']], function () {

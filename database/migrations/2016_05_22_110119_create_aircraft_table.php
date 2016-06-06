@@ -24,6 +24,7 @@ class CreateAircraftTable extends Migration
 			$table->string('class');
 			$table->string('transponder');
 			$table->string('trailer');
+			$table->string('owner');
 			$table->date('trailer_wof_due');
 			$table->date('trailer_rego_due');
 			$table->integer('seats')->default(1);

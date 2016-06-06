@@ -15,7 +15,20 @@ class AircraftController extends Controller
 		return view('aircraft/aircraft-list');
 	}
 
-	public function load_from_caa()
+	public function view($rego)
+	{
+		// load aircraft
+		if ($aircraft = Aircraft::where('rego', $rego)->first())
+		{
+			return view('aircraft/aircraft-view', $aircraft);
+		}
+
+		abort(404);
+	}
+
+
+
+	public function load_nz()
 	{
 		// load the file from CAA
 		//Storage::disk('local')->put('aircraft.tab', );
@@ -32,8 +45,8 @@ class AircraftController extends Controller
 		    [3] => Discus b
 		    [4] => NZ1
 		    [5] => 524
-		    [6] => 
-		    [7] => Piako Gliding Club (Inc)
+		    [6] => Tim
+		    [7] => Bromhead
 		    [8] => Piako Gliding Club
 		    [9] => PO Box 100
 		    [10] => 
@@ -63,6 +76,12 @@ class AircraftController extends Controller
 					$aircraft->serial = $row[4];
 					$aircraft->mctow = $row[5];
 					$aircraft->class = $row[0];
+
+					$names = Array();
+					if ($row[6]!='') $names[] = $row[6];
+					if ($row[7]!='') $names[] = $row[7];
+
+					$aircraft->owner = implode($names, ' ');
 					
 					// check if we should shorten the contest rego to 2 letters, only for gliders
 					if ($row[0]=='Power Glider' || $row[0]=='Glider')

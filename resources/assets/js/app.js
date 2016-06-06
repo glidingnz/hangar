@@ -35,17 +35,18 @@ if (typeof messages != 'undefined') {
 			case 'warning': gnz.messages.warning(message.text); break;
 		}
 	})
-	console.log(messages);
 }
 
+// Common Methods 
 
-//vm.messages().success('test');
+var History = window.History;
 
-/*
-import Vue from 'vue';
-
-new Vue({
-  el: '#app',
-  components: { Profile }
-});
-*/
+function get_url_param(val) {
+	var result = "",
+	tmp = [];
+	location.search.substr(1).split("&").forEach(function (item) {
+		tmp = item.split("=");
+		if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+	});
+	return result;
+}

@@ -24,3 +24,4 @@ Vue.component('orgs-component', OrgsComponent);
 new Vue({
 	el: '#test'
 })
+

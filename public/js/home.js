@@ -24,4 +24,6 @@ Vue.component('orgs-component', OrgsComponent);
 new Vue({
 	el: '#test'
 })
+
+
 //# sourceMappingURL=home.js.map

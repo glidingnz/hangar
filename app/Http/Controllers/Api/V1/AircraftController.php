@@ -27,6 +27,7 @@ class AircraftController extends ApiController
 				$queryAircraft->where('rego','like',$s);
 				$queryAircraft->orWhere('manufacturer','like',$s);
 				$queryAircraft->orWhere('model','like',$s);
+				$queryAircraft->orWhere('owner','like',$s);
 			});
 		}
 
@@ -49,7 +50,6 @@ class AircraftController extends ApiController
 				});
 				break;
 			case 'microlight':
-
 				$queryAircraft->where(function($queryAircraft) {
 					$queryAircraft->where('class','=','Microlight Class 1');
 					$queryAircraft->orWhere('class','=','Microlight Class 2');
@@ -71,6 +71,7 @@ class AircraftController extends ApiController
 				break;
 			case 'tow-plane':
 			case 'tow':
+			case 'tug':
 				$queryAircraft->where('towplane','=','1');
 				break;
 			case 'self-launch':
@@ -79,6 +80,12 @@ class AircraftController extends ApiController
 				break;
 			case 'sustainer':
 				$queryAircraft->where('sustainer','=','1');
+				break;
+			case 'engine':
+				$queryAircraft->where(function($queryAircraft) {
+					$queryAircraft->where('sustainer','=','1');
+					$queryAircraft->orWhere('self_launcher','=','1');
+				});
 				break;
 		}
 
@@ -170,5 +177,20 @@ class AircraftController extends ApiController
 	public function destroy($id)
 	{
 		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  string  $rego
+	 * @return \Illuminate\Http\Response
+	 */
+	public function rego($rego)
+	{
+		if ($aircraft = Aircraft::where('rego', $rego)->first())
+		{
+			return $this->success($aircraft);
+		}
+		return $this->error();
 	}
 }

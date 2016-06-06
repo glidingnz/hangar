@@ -85,7 +85,9 @@
 
 	<script type="text/javascript" src="/js/app.js"></script>
 	<script type="text/javascript" src="/js/vue-resource.js"></script>
-	
+	<script type="text/javascript" src="/js/native.history.js"></script>
+	<script type="text/javascript" src="/js/base.js"></script>
+
 	<!-- load page specific scripts -->
 	@yield('scripts')
 
