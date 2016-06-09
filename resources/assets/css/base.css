@@ -20,7 +20,7 @@ h1, h2, h3, h4 {
 .hover-btn {
 	background-color: #FFF;
 	text-align: center;
-	padding: 20px;
+	padding: 15px;
 	-webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
 	box-shadow: 0 8px 10px -5px rgba(0,0,0,0.1);
@@ -44,4 +44,7 @@ h1, h2, h3, h4 {
 label {
 	font-weight: normal;
 	color: #888;
+}
+.nowrap {
+	white-space: nowrap;
 }

@@ -50,7 +50,6 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 	Route::group(['middleware' => 'oauth'], function () {
 		Route::get('/time', 'OrgController@test');
 
-
 		Route::resource('aircraft', 'AircraftController', ['only' => [
 			'create', 'store', 'edit', 'update', 'destroy'
 		]]);
@@ -61,6 +60,9 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 	Route::get('/orgs/{id}',  'OrgController@show');
 
 	Route::resource('aircraft', 'AircraftController', ['only' => [
+		'index', 'show'
+	]]);
+	Route::resource('fleet', 'FleetController', ['only' => [
 		'index', 'show'
 	]]);
 
@@ -77,9 +79,9 @@ Route::group(['prefix'=>'api/private'], function()
 	Route::get('/aircraft/import-nz',  'AircraftController@load_nz');
 
 	// Cookies required
-	Route::group(['middleware' => ['auth','load-org']], function () {
-		Route::get('/time', 'v1\OrgController@test');
-	});
+	// Route::group(['middleware' => ['auth','load-org']], function () {
+	// 	Route::get('/time', 'v1\OrgController@test');
+	// });
 });
 
 

@@ -3,10 +3,10 @@
 @section('content')
 <style>
 .app-panel {
-	padding: 20px 20px;
+	padding: 15px 15px;
 }
 .app-panel-inner .fa {
-	font-size: 400%;
+	font-size: 300%;
 }
 .app-panel-inner a {
 	text-decoration: none;
@@ -112,7 +112,7 @@
 				<h3 class="col-xs-10 col-sm-12">Bulk Email</h3>
 			</div>
 		</div>
-		
+
 		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
 			<div class="clearfix app-panel-inner hover-btn disabled">
 				<i class="col-xs-2 col-sm-12 fa fa-map-marker"></i>
@@ -126,7 +126,6 @@
 				<h3 class="col-xs-10 col-sm-12">Tracking</h3>
 			</div>
 		</div>
-
 
 	</div>
 

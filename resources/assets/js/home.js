@@ -1,5 +1,5 @@
 var OrgsComponent = Vue.extend({
-	template: '<ul><li v-for="org in orgs"><a href="http://{{org.slug}}.gliding.dev">{{org.name}}</li></ul>',
+	template: '<div class="list-group"><a class="list-group-item" v-for="org in orgs" href="http://{{org.slug}}.gliding.dev">{{org.name}}</a></div>',
 	data: function() {
 		return {
 			orgs: []

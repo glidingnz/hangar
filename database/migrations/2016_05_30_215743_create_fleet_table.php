@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAircraftOrgTable extends Migration
+class CreateFleetTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAircraftOrgTable extends Migration
 	public function up()
 	{
 		
-		Schema::create('aircraft_org', function (Blueprint $table) {
+		Schema::create('fleet', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('aircraft_id');
 			$table->integer('org_id');
@@ -28,6 +28,6 @@ class CreateAircraftOrgTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('aircraft_org');
+		Schema::drop('fleet');
 	}
 }

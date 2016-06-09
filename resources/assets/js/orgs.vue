@@ -1,7 +1,7 @@
 
 <template>
 	<ul class="orgs" id="orgs">
-		<li v-for="org in orgs">@{{org.name}}</li>
+		<li v-for="org in orgs"><h2>{{org.name}}</h2></li>
 	</ul>
 </template>
 

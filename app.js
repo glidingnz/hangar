@@ -2,7 +2,7 @@ var gnz = {};
 
 import Vue from 'vue';
 import Messages from './messages.vue';
-import Orgs from './orgs.vue';
+//import Orgs from './orgs.vue';
 
 gnz.messages = new Vue({
 	el: '#app-layout',

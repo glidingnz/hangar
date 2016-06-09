@@ -92,7 +92,6 @@ class AircraftController extends ApiController
 				break;
 		}
 
-
 		// case 'Aeroplane':
 		// case 'Amateur Built Aeroplane':
 		// case 'Amateur Built Glider':
@@ -104,6 +103,8 @@ class AircraftController extends ApiController
 		// case 'Microlight Class 1':
 		// case 'Microlight Class 2':
 		// case 'Power Glider':
+
+		
 
 		if ($aircraft = $queryAircraft->paginate($request->input('per-page', 50)))
 		{

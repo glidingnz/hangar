@@ -8,4 +8,9 @@ class Aircraft extends Model
 {
 	protected $table = 'aircraft';
 	//
+
+	public function orgs()
+	{
+		return $this->belongsToMany('App\Models\Org', 'fleet');
+	}
 }

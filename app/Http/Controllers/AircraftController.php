@@ -27,9 +27,10 @@ class AircraftController extends Controller
 	}
 
 
-	public function fleet($rego)
+	public function fleet(Request $request)
 	{
-		
+		$org = Array('org' => $request->attributes->get('org'));
+		return view('aircraft/fleet-list', $org);
 	}
 
 
