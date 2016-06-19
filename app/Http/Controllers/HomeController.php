@@ -47,7 +47,8 @@ class HomeController extends Controller
 	 */
 	public function apps(Request $request)
 	{
+		$data['org'] = $request->attributes->get('org');
 		//if ($request->user()->can('admin')) echo 'yah';
-		return view('apps');
+		return view('apps', $data);
 	}
 }

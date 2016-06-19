@@ -12,6 +12,10 @@
 */
 
 
+/**
+ * Website --------------------------------------
+ */
+
 Route::get('/', 'HomeController@index');
 
 
@@ -28,21 +32,28 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/clubs', 'HomeController@switchOrg');
-Route::get('/apps', 'HomeController@apps');
 
 /* nationwide apps */
 Route::get('/aircraft', 'AircraftController@index');
 Route::get('/aircraft/{rego}', 'AircraftController@view');
 
-/* club apps */
+
+/* load club pages */
 Route::group(['middleware' => 'load-org'], function()
+{
+	Route::get('/apps', 'HomeController@apps');
+});
+
+
+/* club required apps */
+Route::group(['middleware' => 'require-org'], function()
 {
 	Route::get('/fleet', 'AircraftController@fleet');
 });
 
 
 /**
- * OAuth Public API
+ * Public API, with OAUTH --------------------------------------
  */
 Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 {
@@ -59,10 +70,13 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 	Route::get('/orgs',  'OrgController@index');
 	Route::get('/orgs/{id}',  'OrgController@show');
 
+	//Route::get('orgs/{org}/fleet', 'FleetController@index');
+
 	Route::resource('aircraft', 'AircraftController', ['only' => [
 		'index', 'show'
 	]]);
-	Route::resource('fleet', 'FleetController', ['only' => [
+
+	Route::resource('orgs/{org}/fleet', 'FleetController', ['only' => [
 		'index', 'show'
 	]]);
 
@@ -70,7 +84,7 @@ Route::group(['prefix'=>'api/v1', 'namespace' => 'Api\V1'], function()
 
 
 /**
- * Private cookie based API. Intended for the internal app only.
+ * Private cookie based API. Intended for the internal app only.  ------------
  */
 Route::group(['prefix'=>'api/private'], function()
 {

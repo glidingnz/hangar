@@ -6,7 +6,7 @@ use Closure;
 use App\Models\Org;
 use App\Facades\Messages;
 
-class LoadOrg
+class RequireOrg
 {
 	/**
 	 * Handle an incoming request.
@@ -20,11 +20,15 @@ class LoadOrg
 		$subdomains = explode(".",$_SERVER['HTTP_HOST']);
 		$subdomain = array_shift($subdomains);
 		
-		$org = null;
 		if ($org = Org::where('slug', $subdomain)->first())
 		{
+			$request->attributes->add(['org' => $org]);
+			return $next($request);
 		}
-		$request->attributes->add(['org' => $org]);
-		return $next($request);
+		// if no site is found, return to the switch page
+		return redirect('/clubs');
+
+		//$temp_errors[] = 'Doing it wrong';
+		//$request->session()->flash('errors', $temp_errors);
 	}
 }

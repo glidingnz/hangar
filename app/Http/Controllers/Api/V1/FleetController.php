@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Api\ApiController;
 use App\Models\Fleet;
+use App\Models\Org;
 
 class FleetController extends ApiController
 {
@@ -15,10 +16,9 @@ class FleetController extends ApiController
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
+	public function index(Org $org)
 	{
-		//
-		if ($fleet = Fleet::all())
+		if ($fleet = Fleet::where('org_id', $org->id)->get())
 		{
 			return $this->success($fleet);
 		}
@@ -30,9 +30,15 @@ class FleetController extends ApiController
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create(Org $org)
 	{
-		//
+		/*
+		if ($fleet = Fleet::where('org_id', $org->id)->get())
+		{
+			return $this->success($fleet);
+		}
+		return $this->error();
+		*/
 	}
 
 	/**
@@ -54,6 +60,12 @@ class FleetController extends ApiController
 	 */
 	public function show($org_id)
 	{
+		
+		if ($fleet = Fleet::where('org_id', $org->id)->get())
+		{
+			return $this->success($fleet);
+		}
+		return $this->error();
 		/*
 		$queryAircraft = Aircraft::query();
 		$queryAircraft->orderBy('rego');

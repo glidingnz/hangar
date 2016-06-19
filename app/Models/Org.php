@@ -13,8 +13,10 @@ class Org extends Model
 		return $this->belongsToMany('App\Models\Aircraft', 'fleet');
 	}
 
+	/*
 	public function fleet()
 	{
 		return $this->hasMany('Fleet');
 	}
+	*/
 }
