@@ -41,72 +41,76 @@
 </style>
 
 <div class="container">
-
-	<h1>Club Apps</h1>
 	
-	<div class="row">
+	<?php if ($org) { ?>
 
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn hover-btn-active">
-				<a class="col-xs-2 col-sm-12" href="/fleet"><i class="fa fa-paper-plane"></i></a>
-				<h3 class="col-xs-10 col-sm-12"><a href="/fleet">Our Fleet</a></h3>
-			</div>
-		</div>
+		<h1>Club Apps</h1>
 		
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				
-				<i class="col-xs-2 col-sm-12 fa fa-calendar"></i>
-				
-				<h3 class="col-xs-10 col-sm-12">Roster</h3>
-				
+		<div class="row">
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn hover-btn-active">
+					<a class="col-xs-2 col-sm-12" href="/fleet"><i class="fa fa-paper-plane"></i></a>
+					<h3 class="col-xs-10 col-sm-12"><a href="/fleet">Our Fleet</a></h3>
+				</div>
+			</div>
+			
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					
+					<i class="col-xs-2 col-sm-12 fa fa-calendar"></i>
+					
+					<h3 class="col-xs-10 col-sm-12">Roster</h3>
+					
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-users"></i>
+					<h3 class="col-xs-10 col-sm-12">Members</h3>
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-book"></i>
+					<h3 class="col-xs-10 col-sm-12">Bookings</h3>
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-home"></i>
+					<h3 class="col-xs-10 col-sm-12">Accomodation</h3>
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-cogs"></i>
+					<h3 class="col-xs-10 col-sm-12">Admin</h3>
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-car"></i>
+					<h3 class="col-xs-10 col-sm-12">Landouts</h3>
+				</div>
+			</div>
+
+			<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+				<div class="clearfix app-panel-inner hover-btn disabled">
+					<i class="col-xs-2 col-sm-12 fa fa-thumbs-up"></i>
+					<h3 class="col-xs-10 col-sm-12">Ops Normals</h3>
+				</div>
 			</div>
 		</div>
 
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-users"></i>
-				<h3 class="col-xs-10 col-sm-12">Members</h3>
-			</div>
-		</div>
-
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-book"></i>
-				<h3 class="col-xs-10 col-sm-12">Bookings</h3>
-			</div>
-		</div>
-
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-home"></i>
-				<h3 class="col-xs-10 col-sm-12">Accomodation</h3>
-			</div>
-		</div>
-
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-cogs"></i>
-				<h3 class="col-xs-10 col-sm-12">Admin</h3>
-			</div>
-		</div>
-
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-car"></i>
-				<h3 class="col-xs-10 col-sm-12">Landouts</h3>
-			</div>
-		</div>
-
-		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
-			<div class="clearfix app-panel-inner hover-btn disabled">
-				<i class="col-xs-2 col-sm-12 fa fa-thumbs-up"></i>
-				<h3 class="col-xs-10 col-sm-12">Ops Normals</h3>
-			</div>
-		</div>
-	</div>
-
-	<hr class="clearfix">
+		<hr class="clearfix">
+		
+	<?php } ?>
 	
 	<h1>Nationwide Apps</h1>
 

@@ -20,10 +20,7 @@ class LoadOrg
 		$subdomains = explode(".",$_SERVER['HTTP_HOST']);
 		$subdomain = array_shift($subdomains);
 		
-		$org = null;
-		if ($org = Org::where('slug', $subdomain)->first())
-		{
-		}
+		$org = Org::where('slug', $subdomain)->first();
 		$request->attributes->add(['org' => $org]);
 		return $next($request);
 	}
