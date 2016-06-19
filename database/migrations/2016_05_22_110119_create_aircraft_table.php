@@ -24,6 +24,7 @@ class CreateAircraftTable extends Migration
 			$table->string('transponder');
 			$table->string('trailer');
 			$table->string('owner');
+			$table->string('location');
 			$table->date('trailer_wof_due');
 			$table->date('trailer_rego_due');
 			$table->integer('seats')->default(1);
@@ -32,6 +33,8 @@ class CreateAircraftTable extends Migration
 			$table->boolean('sustainer')->default(0);
 			$table->boolean('retractable')->default(0);
 			$table->boolean('vintage')->default(0);
+			$table->boolean('jet')->default(0);
+			$table->boolean('electric')->default(0);
 			$table->timestamps();
 		});
 	}

@@ -42,7 +42,6 @@
 
 <div class="container">
 
-	
 	<h1>Club Apps</h1>
 	
 	<div class="row">
@@ -91,6 +90,20 @@
 				<h3 class="col-xs-10 col-sm-12">Admin</h3>
 			</div>
 		</div>
+
+		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+			<div class="clearfix app-panel-inner hover-btn disabled">
+				<i class="col-xs-2 col-sm-12 fa fa-car"></i>
+				<h3 class="col-xs-10 col-sm-12">Landouts</h3>
+			</div>
+		</div>
+
+		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+			<div class="clearfix app-panel-inner hover-btn disabled">
+				<i class="col-xs-2 col-sm-12 fa fa-thumbs-up"></i>
+				<h3 class="col-xs-10 col-sm-12">Ops Normals</h3>
+			</div>
+		</div>
 	</div>
 
 	<hr class="clearfix">
@@ -109,7 +122,15 @@
 		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
 			<div class="clearfix app-panel-inner hover-btn disabled">
 				<i class="col-xs-2 col-sm-12 fa fa-envelope"></i>
-				<h3 class="col-xs-10 col-sm-12">Bulk Email</h3>
+				<h3 class="col-xs-10 col-sm-12">Email</h3>
+			</div>
+		</div>
+
+		
+		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
+			<div class="clearfix app-panel-inner hover-btn disabled">
+				<i class="col-xs-2 col-sm-12 fa fa-exclamation-circle"></i>
+				<h3 class="col-xs-10 col-sm-12">Incidents</h3>
 			</div>
 		</div>
 

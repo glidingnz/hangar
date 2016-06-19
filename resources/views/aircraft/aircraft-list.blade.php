@@ -61,9 +61,9 @@
 		<div class="col-xs-12 col-sm-8">
 
 			<div class="btn-group pull-right" role="group">
-				<button type="button" class="btn btn-default disabled">Page @{{ state.page }} of @{{ last_page }}</button>
-				<button type="button" class="btn btn-default" v-on:click="previous()">Previous</button>
-				<button type="button" class="btn btn-default" v-on:click="next()">Next</button>
+				<button type="button" class="btn btn-default btn-sm disabled">Page @{{ state.page }} of @{{ last_page }}</button>
+				<button type="button" class="btn btn-default btn-sm" v-on:click="previous()">Previous</button>
+				<button type="button" class="btn btn-default btn-sm" v-on:click="next()">Next</button>
 			</div>
 
 		</div>
@@ -74,7 +74,7 @@
 	<table class="table results-table ">
 		<tr>
 			<th class="hidden-xs hidden-sm">Rego</th>
-			<th><span class="hidden-xs">Contest </span>ID</th>
+			<th>ID</th>
 			<th>Manufacturer</th>
 			<th>Model</th>
 			<th class="hidden-xs">Class</th>

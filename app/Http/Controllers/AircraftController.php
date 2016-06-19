@@ -106,6 +106,7 @@ class AircraftController extends Controller
 						switch ($row[3]) {
 							case 'DG-800B':
 							case 'DG-800C':
+							case 'DG-808C':
 							case 'DG-400':
 							case 'PIK-30':
 							case 'ASH 26 E':
@@ -121,6 +122,7 @@ class AircraftController extends Controller
 								break;
 						}
 					}
+
 
 					// check for common glider features
 					if ($row[0]=='Power Glider' || $row[0]=='Glider')
@@ -167,6 +169,21 @@ class AircraftController extends Controller
 							default:
 								$aircraft->retractable = true;
 								break;
+
+							// check for jets/electric. For some reason these aren't classified as having engines in CAAs database.
+							switch ($row[3])
+							{
+								case 'JS1-C 18/21':
+								case 'JS1-B "Revelation"':
+									$aircraft->sustainer = true;
+									$aircraft->jet = true;
+									break;
+								case 'E1 Antares':
+									$aircraft->electric = true;
+									$aircraft->self_launcher = true;
+									break;
+							}
+
 						}
 
 
