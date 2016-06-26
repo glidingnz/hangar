@@ -135,7 +135,7 @@ return [
     |
     */
 
-    'domain' => env('APP_DOMAIN', '.gliding.dev'),
+    'domain' => '.' . env('APP_DOMAIN', 'gliding.dev'),
 
     /*
     |--------------------------------------------------------------------------
