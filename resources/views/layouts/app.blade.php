@@ -80,6 +80,7 @@
 	// fetch all messages stored in the messages system to hand over to javascript
 	$messages = Messages::fetch();
 	echo '<script>var messages='. json_encode($messages) . ';</script>';
+	echo '<script>var app={ domain: "' . env('APP_DOMAIN') . '" }</script>';
 	?>
 
 
