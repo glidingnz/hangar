@@ -33,9 +33,12 @@ class AircraftController extends Controller
 		return view('aircraft/fleet-list', $org);
 	}
 
+	public function import_nz()
+	{
+		return view('aircraft/import-nz');
+	}
 
-
-	public function load_nz()
+	public function import_nz_action(Request $request)
 	{
 		// load the file from CAA
 		//Storage::disk('local')->put('aircraft.tab', );
@@ -74,7 +77,32 @@ class AircraftController extends Controller
 
 				$rego = 'ZK-'.$row[1];
 
-				if (Aircraft::where('rego', $rego)->first()==NULL)
+
+				// Update existing aircraft
+				$aircraft = Aircraft::where('rego', $rego)->first();
+
+				$names = Array();
+				if ($row[6]!='') $names[] = $row[6];
+				if ($row[7]!='') $names[] = $row[7];
+
+
+
+				if ($aircraft!==NULL)
+				{
+					$changes = false;
+
+					$new_name = implode($names, ' ');
+					if ($new_name!=$aircraft->owner) {
+						$aircraft->owner = $new_name;
+						$changes=true;
+					};
+
+					if ($changes) $aircraft->save();
+				}
+
+
+				// Deal with aircraft that aren't already in the DB
+				if ($aircraft==NULL)
 				{
 					$aircraft = new Aircraft;
 					$aircraft->rego = $rego;
@@ -83,10 +111,6 @@ class AircraftController extends Controller
 					$aircraft->serial = $row[4];
 					$aircraft->mctow = $row[5];
 					$aircraft->class = $row[0];
-
-					$names = Array();
-					if ($row[6]!='') $names[] = $row[6];
-					if ($row[7]!='') $names[] = $row[7];
 
 					$aircraft->owner = implode($names, ' ');
 					
@@ -258,6 +282,7 @@ class AircraftController extends Controller
 			*/
 		}
 
-		return 'Done';
+		$request->session()->flash('success', 'Aircraft Imported');
+		return view('aircraft/import-nz');
 	}
 }

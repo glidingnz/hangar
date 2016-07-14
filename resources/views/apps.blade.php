@@ -118,8 +118,8 @@
 
 		<div class="app-panel col-xs-12 col-sm-4 col-md-3">
 			<div class="clearfix app-panel-inner hover-btn hover-btn-active">
-				<a class="col-xs-2 col-sm-12" href="http://gliding.dev/aircraft"><i class="fa fa-plane"></i></a>
-				<h3 class="col-xs-10 col-sm-12"><a href="http://gliding.dev/aircraft">Aircraft</a></h3>
+				<a class="col-xs-2 col-sm-12" href="/aircraft"><i class="fa fa-plane"></i></a>
+				<h3 class="col-xs-10 col-sm-12"><a href="/aircraft">Aircraft</a></h3>
 			</div>
 		</div>
 		

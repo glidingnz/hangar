@@ -29,6 +29,8 @@ Route::post('/activate', 'UsersController@activate_post');
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('/account', 'UsersController@view_account');
 	Route::post('/update-account', 'UsersController@update_account');
+	Route::get('/aircraft/import-nz', 'AircraftController@import_nz');
+	Route::post('/aircraft/import-nz', 'AircraftController@import_nz_action');
 });
 
 Route::get('/clubs', 'HomeController@switchOrg');
@@ -50,7 +52,6 @@ Route::group(['middleware' => 'require-org'], function()
 {
 	Route::get('/fleet', 'AircraftController@fleet');
 });
-
 
 /**
  * Public API, with OAUTH --------------------------------------
